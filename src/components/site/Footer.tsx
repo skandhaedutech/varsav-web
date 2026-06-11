@@ -15,16 +15,13 @@ const LINKS = [
 const COURSES = [
   "AI And ML",
   "Data Science With AI",
-  "Data Analytics",
-  "Business Analytics",
   "Full Stack Development",
   "AWS & Azure",
   "Cybersecurity",
-  "SAP FICO",
-  "SAP MM",
+  "SAP FICO S/4HANA",
   "Digital Marketing",
-  "Financial Modelling",
   "Tally Prime",
+  "UI/UX Design",
 ];
 
 export function Footer() {
@@ -36,6 +33,7 @@ export function Footer() {
       />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+
           <div className="space-y-4">
             <Logo variant="light" />
             <p className="text-sm text-white/70 leading-relaxed">
@@ -81,20 +79,34 @@ export function Footer() {
               ))}
             </ul>
           </div>
+<div>
+  <h4 className="text-sm font-semibold text-gold mb-4 uppercase tracking-wider">
+    Programs
+  </h4>
 
-          <div>
-            <h4 className="text-sm font-semibold text-gold mb-4 uppercase tracking-wider">Programs</h4>
-            <ul className="space-y-2.5">
-              {COURSES.map((c) => (
-                <li key={c}>
-                  <Link to="/courses" className="text-sm text-white/70 hover:text-gold transition-smooth">
-                    {c}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+  <ul className="space-y-2.5">
+    {COURSES.map((c) => (
+      <li key={c}>
+        <Link
+          to="/courses"
+          className="text-sm text-white/70 hover:text-gold transition-smooth"
+        >
+          {c}
+        </Link>
+      </li>
+    ))}
 
+    <li className="pt-2">
+      <Link
+        to="/courses"
+        className="text-gold font-semibold hover:underline"
+      >
+        View All Courses →
+      </Link>
+    </li>
+  </ul>
+</div>
+          
           <div>
             <h4 className="text-sm font-semibold text-gold mb-4 uppercase tracking-wider">Reach Us</h4>
             <ul className="space-y-3 text-sm text-white/80">
