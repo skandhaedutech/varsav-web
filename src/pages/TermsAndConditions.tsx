@@ -80,11 +80,11 @@ export default function TermsAndConditions() {
             <div>
               <h2 className="text-2xl font-semibold">11. Contact</h2>
               <p className="mt-2 text-muted-foreground">
-                Email: skandhaedutechtrainingcenter@gmail.com
+                Email: varsavacademy@gmail.com
                 <br />
-                Phone: +91 8248143913
+                Phone: +91 94884 40085
                 <br />
-                Address: No.46, Maravaneri Main Road, Salem - 636007, Tamil Nadu, India.
+                Address: 35 Gopal Street, T.Nagar, Chennai, Tamil Nadu 600017
               </p>
             </div>
           </div>

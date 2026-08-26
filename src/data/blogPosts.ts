@@ -16,12 +16,12 @@ export const POSTS: BlogPost[] = [
     cat: "Tech Education",
     date: "Jul 10, 2025",
     read: "7 min",
-    title: "Skandha Edu Tech Is Transforming Online & Offline Tech Education",
+    title: "Varsav Academy Is Transforming Online & Offline Tech Education",
     excerpt:
-      "Discover how Skandha Edu Tech Training Center's curriculum, learning approach, faculty, and certifications are reshaping tech education for IT & Non-IT students.",
+      "Discover how Varsav Academy's curriculum, learning approach, faculty, and certifications are reshaping tech education for IT & Non-IT students.",
     content: `## Online & Offline Learning for IT & Non-IT Students
 
-At Skandha Edu Tech Training Center, we believe that quality tech education should be accessible to everyone — whether you come from an IT background or not. Our programs are designed to bridge the gap between academic learning and industry demands.
+At Varsav Academy, we believe that quality tech education should be accessible to everyone — whether you come from an IT background or not. Our programs are designed to bridge the gap between academic learning and industry demands.
 
 ### Curriculum Design
 
@@ -41,7 +41,7 @@ Beyond technical expertise, we place equal emphasis on essential professional sk
 
 ### Certifications & Recognition
 
-Completing a course at Skandha Edu Tech Training Center means more than just learning — it means earning a credential that is recognized by employers. Our certificates are designed to boost your professional credibility and open doors to exciting career opportunities across industries.
+Completing a course at Varsav Academy means more than just learning — it means earning a credential that is recognized by employers. Our certificates are designed to boost your professional credibility and open doors to exciting career opportunities across industries.
 
 ### Student Support
 
@@ -49,7 +49,7 @@ We offer personalized doubt-clearing sessions, active alumni communities, and ti
 
 ### Conclusion
 
-Skandha Edu Tech Training Center isn't just teaching technology; we're reshaping how tech education works by combining academic excellence, practical experience, and personalized support. Whether you're starting your tech career from scratch or upskilling for growth, we are here to help you succeed.`,
+Varsav Academy isn't just teaching technology; we're reshaping how tech education works by combining academic excellence, practical experience, and personalized support. Whether you're starting your tech career from scratch or upskilling for growth, we are here to help you succeed.`,
   },
   {
     id: "unlock-future-it-business-skills",
@@ -59,10 +59,10 @@ Skandha Edu Tech Training Center isn't just teaching technology; we're reshaping
     read: "6 min",
     title: "Unlock Your Future: Learn In-Demand IT & Business Skills",
     excerpt:
-      "Ready to start your journey? Discover how Skandha Edu Tech Training Center can help you build a career that lasts with industry-focused training programs.",
+      "Ready to start your journey? Discover how Varsav Academy can help you build a career that lasts with industry-focused training programs.",
     content: `## Learn It. Earn It. Build a Career That Lasts.
 
-In today's competitive job market, having the right skills is everything. Skandha Edu Tech Training Center offers industry-focused training programs designed to transform beginners into job-ready professionals — quickly and effectively.
+In today's competitive job market, having the right skills is everything. Varsav Academy offers industry-focused training programs designed to transform beginners into job-ready professionals — quickly and effectively.
 
 ### Why Upskilling in 2025 Is Non-Negotiable
 
@@ -127,7 +127,7 @@ A well-designed Excel dashboard combines charts, sparklines, KPI indicators, and
 
 Power Query lets you connect to dozens of data sources, clean and transform messy data, and load it into Excel — all without writing a single formula. Power Pivot takes this further, enabling data models with relationships across multiple tables and DAX measures for calculations that aren't possible in standard Excel.
 
-### Getting Started at Skandha Edu Tech
+### Getting Started at Varsav Academy
 
 Our Excel program covers everything from basics through advanced dashboard creation. You'll work on real business datasets, build portfolio-ready dashboards, and leave with skills that are immediately applicable on the job.`,
   },
@@ -174,7 +174,7 @@ SAP FICO enables automated financial reporting and statutory compliance across m
 
 SAP FICO consultants command strong salaries across manufacturing, retail, banking, pharmaceuticals, and management consulting sectors. With ERP systems being implemented or upgraded across industries globally, skilled SAP FICO professionals are consistently among the most sought-after candidates in the enterprise software market.
 
-### Learn SAP FICO at Skandha Edu Tech Training Center
+### Learn SAP FICO at Varsav Academy
 
 Our SAP FICO program covers all modules with hands-on practice in a live SAP environment, real business scenarios drawn from industry case studies, and dedicated placement assistance. Students graduate with both the technical knowledge and the practical confidence to perform effectively in their first SAP role.`,
   },
@@ -213,7 +213,7 @@ This is the phase that separates candidates who get interviews from those who do
 
 Choose a direction — Machine Learning Engineer, Data Analyst, or Business Intelligence Developer — and deepen your skills accordingly. Practice SQL extensively, as nearly every data role requires it regardless of specialization. Prepare for technical interviews with data structure fundamentals, SQL query challenges, and business case studies.
 
-### How Skandha Edu Tech Training Center Helps
+### How Varsav Academy Helps
 
 Our Data Science with AI program is structured exactly around this roadmap — compressed into a focused, mentor-led format with live projects, weekly assessments, and dedicated placement preparation. You don't have to figure this out alone.`,
   },
@@ -250,7 +250,7 @@ Git is not optional. Employers expect comfortable use of branching strategies, p
 
 Beyond technical skills, hiring teams consistently value: the ability to read and navigate existing codebases, clear communication about technical trade-offs, writing clean and maintainable code with good naming conventions, and strong debugging skills. These are best developed by working on real projects with other developers — not just completing tutorials.
 
-### Learning Full Stack at Skandha Edu Tech Training Center
+### Learning Full Stack at Varsav Academy
 
 Our Full Stack Development program covers the complete MERN stack — MongoDB, Express.js, React, and Node.js — with real capstone projects that you deploy to a live cloud environment. By the end of the program, you have a production-quality portfolio that demonstrates exactly what employers need to see to make a hire.`,
   },

@@ -11,7 +11,7 @@ export default function Blog() {
       <PageHero
         eyebrow="Blog & Insights"
         title="Career Tips, Technology Ideas, | Hiring Insights"
-        subtitle="Honest, practical writing from our mentors and placement team at Skandha Edu Tech Training Center."
+        subtitle="Honest, practical writing from our mentors and placement team at Varsav Academy."
       />
 
       <section className="py-24">

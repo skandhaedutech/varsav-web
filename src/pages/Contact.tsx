@@ -3,6 +3,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { Facebook, Instagram, Mail, MapPin, Phone, Send, MessageCircle } from "lucide-react";
 import { PageShell, PageHero } from "@/components/site/PageShell";
+import { Parallax } from "@/components/site/Parallax";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,6 +23,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { toast } from "sonner";
+
+/* ── EmailJS configuration from environment variables ──────────────────── */
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+// Initialize EmailJS SDK once at module load
+emailjs.init(EMAILJS_PUBLIC_KEY);
 
 const COURSES = [
   "AI & Machine Learning",
@@ -71,20 +80,42 @@ export default function Contact() {
       setErrors(errs);
       return;
     }
+
+    // Validate that EmailJS config is present
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      toast.error("Email service is not configured. Please contact us directly at varsavacademy@gmail.com");
+      return;
+    }
+
     try {
       setSubmitting(true);
-      await emailjs.send(
-        "service_z4y4rad",
-        "template_s69u7m8",
-        { name: form.name, phone: form.phone, email: form.email, course: form.course, message: form.message },
-        "15No8zyHkQ97lEHDg"
-      );
-      toast.success("Message sent successfully!");
-      setForm({ name: "", phone: "", email: "", course: "", message: "" });
       setErrors({});
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to send message");
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_phone: form.phone,
+          from_email: form.email,
+          reply_to: form.email,
+          course: form.course,
+          message: form.message,
+          // Legacy field names for backward compatibility with existing template
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+        }
+      );
+      toast.success("Message sent successfully! We'll get back to you soon.");
+      setForm({ name: "", phone: "", email: "", course: "", message: "" });
+    } catch (error: any) {
+      console.error("EmailJS error:", error);
+      if (error?.status === 412) {
+        toast.error("Email service configuration error. Please contact us directly at varsavacademy@gmail.com");
+      } else {
+        toast.error("Failed to send message. Please try again or call us at +91 94884 40085");
+      }
     } finally {
       setSubmitting(false);
     }
@@ -94,7 +125,7 @@ export default function Contact() {
     <PageShell>
       <PageHero
         eyebrow="Get in Touch"
-        title="Learn In-Demand Skills|Get Job Ready"
+        title="Learn In-Demand Skills | Get Job Ready"
         subtitle="Explore industry-focused training programs with expert mentorship, hands-on projects, and placement support."
       />
 
@@ -102,40 +133,42 @@ export default function Contact() {
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-6">
           {[
-            { icon: Phone, title: "Call Us", lines: ["+91 8248143913 | +91 6382043554"], href: "tel:+918248143913" },
-            { icon: Mail, title: "Email Us", lines: ["skandhaedutechtrainingcenter@gmail.com"], href: "mailto:skandhaedutechtrainingcenter@gmail.com" },
-            { icon: MapPin, title: "Visit Us", lines: ["No.46, Maravaneri Main Road,", "Maravaneri, Salem, Tamil Nadu - 636007"] },
-          ].map((c) => (
-            <Card key={c.title} className="hover-lift border-border">
-              <CardContent className="p-7">
-                <div className="h-12 w-12 rounded-xl bg-gradient-gold flex items-center justify-center shadow-glow">
-                  <c.icon className="h-6 w-6 text-navy-deep" />
-                </div>
-                <h3 className="mt-5 text-lg font-semibold">{c.title}</h3>
-                {c.href ? (
-                  <a href={c.href} className="mt-2 block text-sm text-muted-foreground hover:text-primary break-words">
-                    {c.lines.join(" ")}
-                  </a>
-                ) : (
-                  <div className="mt-2 text-sm text-muted-foreground">
-                    {c.lines.map((l) => (
-                      <div key={l}>{l}</div>
-                    ))}
+            { icon: Phone, title: "Call Us", lines: ["+91 94884 40085"], href: "tel:+919488440085" },
+            { icon: Mail, title: "Email Us", lines: ["varsavacademy@gmail.com"], href: "mailto:varsavacademy@gmail.com" },
+            { icon: MapPin, title: "Visit Us", lines: ["35 Gopal Street, T.Nagar,", "Chennai, Tamil Nadu 600017"] },
+          ].map((c, i) => (
+            <Parallax key={c.title} speed={0.06 * (i + 1)}>
+              <Card className="border-border/80 bg-card hover:border-primary/50 rounded-2xl transition-all duration-300 h-full">
+                <CardContent className="p-7 h-full">
+                  <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold">
+                    <c.icon className="h-6 w-6" />
                   </div>
-                )}
-              </CardContent>
-            </Card>
+                  <h3 className="mt-5 text-lg font-bold">{c.title}</h3>
+                  {c.href ? (
+                    <a href={c.href} className="mt-2 block text-xs text-muted-foreground hover:text-primary break-words">
+                      {c.lines.join(" ")}
+                    </a>
+                  ) : (
+                    <div className="mt-2 text-xs text-muted-foreground">
+                      {c.lines.map((l) => (
+                        <div key={l}>{l}</div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </Parallax>
           ))}
         </div>
       </section>
 
       {/* FORM + MAP */}
-      <section className="py-16 bg-muted/40">
+      <section id="contact-form" className="py-16 bg-secondary/30 border-y border-border/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8">
-          <Card className="border-border">
+          <Card className="border-border/80 rounded-2xl bg-card">
             <CardContent className="p-7">
-              <h2 className="text-2xl font-bold">Send us a message</h2>
-              <p className="mt-2 text-sm text-muted-foreground">We typically reply within one business day.</p>
+              <h2 className="text-2xl font-extrabold tracking-tight">Send us a message</h2>
+              <p className="mt-1 text-xs text-muted-foreground">We typically reply within one business day.</p>
               <form onSubmit={onSubmit} className="mt-6 space-y-4">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
@@ -173,19 +206,19 @@ export default function Contact() {
                   <Textarea id="message" rows={4} value={form.message} onChange={(e) => update("message", e.target.value)} placeholder="Tell us what you're looking for..." />
                   {errors.message && <p className="text-xs text-destructive mt-1">{errors.message}</p>}
                 </div>
-                <Button type="submit" disabled={submitting} className="w-full bg-gradient-brand text-primary-foreground shadow-glow">
+                <Button type="submit" disabled={submitting} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-xl">
                   <Send className="mr-2 h-4 w-4" /> {submitting ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </CardContent>
           </Card>
 
-          <Card className="border-border overflow-hidden">
+          <Card className="border-border/80 rounded-2xl overflow-hidden">
             <CardContent className="p-0">
               <div className="h-[500px] w-full">
                 <iframe
-                  title="Skandha campus map"
-                  src="https://www.google.com/maps?q=Maravaneri+Main+Road+Salem+Tamil+Nadu+636007&output=embed"
+                  title="Varsa Academy campus map"
+                  src="https://www.google.com/maps?q=35+Gopal+Street+T.Nagar+Chennai+Tamil+Nadu+600017&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -201,49 +234,49 @@ export default function Contact() {
       {/* SOCIAL */}
       <section className="py-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-gold text-xs uppercase tracking-[0.2em] font-semibold">Follow Us</span>
-          <h2 className="mt-3 text-3xl md:text-4xl font-bold">Join the Skandha community</h2>
+          <span className="text-primary text-xs uppercase tracking-[0.2em] font-bold px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20">Follow Us</span>
+          <h2 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">Join the Varsa Community</h2>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="https://www.facebook.com/share/1BJnRUVjqx/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-card border border-border hover-lift"
+              className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-card border border-border/80 hover:border-primary/50 transition-all shadow-sm"
             >
-              <span className="h-11 w-11 rounded-xl bg-gradient-gold flex items-center justify-center">
-                <Facebook className="h-5 w-5 text-navy-deep" />
+              <span className="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                <Facebook className="h-5 w-5" />
               </span>
               <div className="text-left">
                 <div className="text-xs text-muted-foreground">Facebook</div>
-                <div className="font-semibold">Skandha Educational Training Center</div>
+                <div className="font-bold text-sm">Varsa Educational Center</div>
               </div>
             </a>
             <a
               href="https://www.instagram.com/skandhaedutech_trainingcenter"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-card border border-border hover-lift"
+              className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-card border border-border/80 hover:border-primary/50 transition-all shadow-sm"
             >
-              <span className="h-11 w-11 rounded-xl bg-gradient-gold flex items-center justify-center">
-                <Instagram className="h-5 w-5 text-navy-deep" />
+              <span className="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                <Instagram className="h-5 w-5" />
               </span>
               <div className="text-left">
                 <div className="text-xs text-muted-foreground">Instagram</div>
-                <div className="font-semibold">@skandhaedutech_trainingcenter</div>
+                <div className="font-bold text-sm">@skandhaedutech_trainingcenter</div>
               </div>
             </a>
             <a
               href="https://chat.whatsapp.com/Ib1ExRBnxNq1auuTKskcko"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-card border border-border hover-lift"
+              className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-card border border-border/80 hover:border-primary/50 transition-all shadow-sm"
             >
-              <span className="h-11 w-11 rounded-xl bg-gradient-gold flex items-center justify-center">
-                <MessageCircle className="h-5 w-5 text-navy-deep" />
+              <span className="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                <MessageCircle className="h-5 w-5" />
               </span>
               <div className="text-left">
                 <div className="text-xs text-muted-foreground">WhatsApp</div>
-                <div className="font-semibold">Join Our WhatsApp Group</div>
+                <div className="font-bold text-sm">Join Our WhatsApp Group</div>
               </div>
             </a>
           </div>
@@ -251,17 +284,17 @@ export default function Contact() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 bg-muted/40">
+      <section className="py-20 bg-secondary/30 border-y border-border/60">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <span className="text-gold text-xs uppercase tracking-[0.2em] font-semibold">FAQ</span>
-            <h2 className="mt-3 text-3xl md:text-4xl font-bold">Common questions</h2>
+            <span className="text-primary text-xs uppercase tracking-[0.2em] font-bold px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20">FAQ</span>
+            <h2 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">Common Questions</h2>
           </div>
           <Accordion type="single" collapsible className="w-full">
             {FAQ.map((f, i) => (
               <AccordionItem key={i} value={`item-${i}`}>
-                <AccordionTrigger className="text-left">{f.q}</AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">{f.a}</AccordionContent>
+                <AccordionTrigger className="text-left font-bold">{f.q}</AccordionTrigger>
+                <AccordionContent className="text-xs text-muted-foreground leading-relaxed">{f.a}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
@@ -270,12 +303,14 @@ export default function Contact() {
 
       {/* CTA */}
       <section className="py-20 bg-gradient-brand text-white text-center">
-        <div className="mx-auto max-w-3xl px-4">
-          <h2 className="text-3xl md:text-4xl font-bold">Start your learning journey today</h2>
-          <p className="mt-3 text-white/70">A 15-minute call with our team can change your career path.</p>
-          <Button asChild size="lg" className="mt-7 bg-gradient-gold text-navy-deep">
-            <a href="tel:+918248143913">Call +91 8248143913</a>
-          </Button>
+        <div className="mx-auto max-w-3xl px-4 space-y-4">
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Start Your Career Journey Today</h2>
+          <p className="text-white/80 max-w-xl mx-auto leading-relaxed">A 15-minute consultation with our advisors can transform your career trajectory.</p>
+          <div className="pt-3">
+            <Button asChild size="lg" className="h-12 px-8 text-base font-semibold bg-white text-black hover:bg-white/90 rounded-xl shadow-xl">
+              <a href="tel:+919488440085">Call +91 94884 40085</a>
+            </Button>
+          </div>
         </div>
       </section>
     </PageShell>

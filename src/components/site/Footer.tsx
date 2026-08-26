@@ -26,10 +26,10 @@ const COURSES = [
 
 export function Footer() {
   return (
-    <footer className="relative bg-gradient-brand text-primary-foreground overflow-hidden">
+    <footer className="relative bg-black text-white overflow-hidden border-t border-white/10">
       <div
-        className="absolute inset-0 opacity-30 pointer-events-none"
-        style={{ backgroundImage: "radial-gradient(at 80% 0%, oklch(0.78 0.14 78 / 0.35), transparent 50%)" }}
+        className="absolute inset-0 opacity-20 pointer-events-none"
+        style={{ backgroundImage: "radial-gradient(at 50% 0%, oklch(0.62 0.18 142 / 0.3), transparent 70%)" }}
       />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
@@ -37,14 +37,14 @@ export function Footer() {
           <div className="space-y-4">
             <Logo variant="light" />
             <p className="text-sm text-white/70 leading-relaxed">
-              Skandha Edu Tech training center crafting industry-ready developers, designers, and digital professionals in Salem, Tamil Nadu.
+              Varsa Academy is Chennai's premier institute empowering students & professionals with cutting-edge IT & management skills.
             </p>
             <div className="flex gap-3 pt-2">
               <a
                 href="https://www.facebook.com/share/1BJnRUVjqx/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-9 w-9 rounded-full glass flex items-center justify-center hover:bg-gold hover:text-navy-deep transition-smooth"
+                className="h-9 w-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary text-white transition-all"
               >
                 <Facebook className="h-4 w-4" />
               </a>
@@ -52,7 +52,7 @@ export function Footer() {
                 href="https://www.instagram.com/skandhaedutech_trainingcenter/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-9 w-9 rounded-full glass flex items-center justify-center hover:bg-gold hover:text-navy-deep transition-smooth"
+                className="h-9 w-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary text-white transition-all"
               >
                 <Instagram className="h-4 w-4" />
               </a>
@@ -60,7 +60,7 @@ export function Footer() {
                 href="https://www.linkedin.com/in/skandhaedutech-training-center-3b84b440a/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-9 w-9 rounded-full glass flex items-center justify-center hover:bg-gold hover:text-navy-deep transition-smooth"
+                className="h-9 w-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary text-white transition-all"
               >
                 <Linkedin className="h-4 w-4" />
               </a>
@@ -68,73 +68,57 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-gold mb-4 uppercase tracking-wider">Explore</h4>
+            <h4 className="text-xs font-bold text-emerald-400 mb-4 uppercase tracking-widest">Explore</h4>
             <ul className="space-y-2.5">
               {LINKS.map((l) => (
                 <li key={l.to}>
-                  <Link to={l.to} className="text-sm text-white/70 hover:text-gold transition-smooth">
+                  <Link to={l.to} className="text-sm text-white/70 hover:text-white transition-colors">
                     {l.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-<div>
-  <h4 className="text-sm font-semibold text-gold mb-4 uppercase tracking-wider">
-    Programs
-  </h4>
 
-  <ul className="space-y-2.5">
-    {COURSES.map((c) => (
-      <li key={c}>
-        <Link
-          to="/courses"
-          className="text-sm text-white/70 hover:text-gold transition-smooth"
-        >
-          {c}
-        </Link>
-      </li>
-    ))}
-
-    <li className="pt-2">
-      <Link
-        to="/courses"
-        className="text-gold font-semibold hover:underline"
-      >
-        View All Courses →
-      </Link>
-    </li>
-  </ul>
-</div>
-          
           <div>
-            <h4 className="text-sm font-semibold text-gold mb-4 uppercase tracking-wider">Reach Us</h4>
-            <ul className="space-y-3 text-sm text-white/80">
+            <h4 className="text-xs font-bold text-emerald-400 mb-4 uppercase tracking-widest">
+              Programs
+            </h4>
+            <ul className="space-y-2 text-xs text-white/70">
+              {COURSES.map((c) => (
+                <li key={c}>
+                  <Link to="/courses" className="hover:text-white transition-colors">
+                    {c}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-xs font-bold text-emerald-400 mb-4 uppercase tracking-widest">Reach Us</h4>
+            <ul className="space-y-3 text-xs text-white/70">
               <li className="flex items-start gap-2.5">
-                <MapPin className="h-4 w-4 text-gold mt-0.5 shrink-0" />
-                <span>No.46, Maravaneri Main Road, Maravaneri, Salem, Tamil Nadu - 636007</span>
+                <MapPin className="h-4 w-4 text-emerald-400 mt-0.5 shrink-0" />
+                <span>35 Gopal Street, T.Nagar, Chennai, Tamil Nadu 600017</span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone className="h-4 w-4 text-gold shrink-0" />
-                <a href="tel:+918248143913" className="hover:text-gold transition-smooth">+91 8248143913 | +91 6382043554</a>
+                <Phone className="h-4 w-4 text-emerald-400 shrink-0" />
+                <a href="tel:+919488440085" className="hover:text-white transition-colors">+91 94884 40085</a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Mail className="h-4 w-4 text-gold shrink-0" />
-                <a
-                  href="mailto:skandhaedutechtrainingcenter@gmail.com"
-                  className="hover:text-gold transition-smooth break-all"
-                >
-                  skandhaedutechtrainingcenter@gmail.com
+                <Mail className="h-4 w-4 text-emerald-400 shrink-0" />
+                <a href="mailto:varsavacademy@gmail.com" className="hover:text-white transition-colors break-all">
+                  varsavacademy@gmail.com
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3 items-center justify-between text-xs text-white/60">
-          <p>© {new Date().getFullYear()} Skandha Edu Tech Training Center. All rights reserved.</p>
-          <p>Designed & Developed by Trywicks Tech</p>
-          <Link to="/terms-and-conditions" className="hover:text-gold transition-smooth">
+        <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3 items-center justify-between text-xs text-white/50">
+          <p>© {new Date().getFullYear()} Varsa Academy. All rights reserved.</p>
+          <Link to="/terms-and-conditions" className="hover:text-white transition-colors">
             Terms & Conditions
           </Link>
         </div>
