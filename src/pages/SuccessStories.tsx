@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Quote, Star } from "lucide-react";
 import { PageShell, PageHero } from "@/components/site/PageShell";
+import { Parallax } from "@/components/site/Parallax";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -66,8 +67,9 @@ export default function SuccessStories() {
 
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-6">
-          {STORIES.map((s) => (
-            <Card key={s.name} className="hover-lift border-border overflow-hidden">
+          {STORIES.map((s, i) => (
+            <Parallax key={s.name} speed={0.04 * ((i % 2) + 1)}>
+              <Card className="hover-lift border-border overflow-hidden h-full">
               <CardContent className="p-7">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-center gap-3">
@@ -102,7 +104,8 @@ export default function SuccessStories() {
                   </div>
                 </div>
               </CardContent>
-            </Card>
+              </Card>
+            </Parallax>
           ))}
         </div>
       </section>

@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
+import { Parallax } from "@/components/site/Parallax";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -298,8 +299,9 @@ export default function Courses() {
             style={{ animationDuration: "0.4s" }}
           >
             {currentCourses.map((course, i) => (
-              <Reveal key={course.title} delay={i * 40} variant="up">
-                <Card className="h-full hover-lift border-border/80 bg-card hover:border-primary/50 overflow-hidden group rounded-2xl transition-all duration-300">
+              <Parallax key={course.title} speed={0.03 * ((i % 3) + 1)}>
+                <Reveal delay={i * 40} variant="up">
+                  <Card className="h-full hover-lift border-border/80 bg-card hover:border-primary/50 overflow-hidden group rounded-2xl transition-all duration-300">
                   <CardContent className="p-7 flex flex-col justify-between h-full">
                     <div>
                       <div className="flex items-center gap-3 mb-4">
@@ -328,7 +330,8 @@ export default function Courses() {
                     </Button>
                   </CardContent>
                 </Card>
-              </Reveal>
+                </Reveal>
+              </Parallax>
             ))}
           </div>
 

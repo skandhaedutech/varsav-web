@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 import { PageShell, PageHero } from "@/components/site/PageShell";
+import { Parallax } from "@/components/site/Parallax";
 
 const ITEMS = [
   { src: "/gallery/gallery-2.jpg", title: "Technical Workshop" },
@@ -27,7 +28,8 @@ export default function Gallery() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {ITEMS.map((item, i) => (
-              <button
+              <Parallax key={i} speed={0.04 * ((i % 3) + 1)}>
+                <button
                 key={i}
                 onClick={() => setPreview(item.src)}
                 className="group relative overflow-hidden rounded-2xl shadow-card hover-lift aspect-[4/3]"
@@ -42,7 +44,8 @@ export default function Gallery() {
                 <div className="absolute bottom-3 left-3 text-left text-white">
                   <div className="font-semibold text-sm">{item.title}</div>
                 </div>
-              </button>
+                </button>
+              </Parallax>
             ))}
           </div>
         </div>

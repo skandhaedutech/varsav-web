@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { PageShell, PageHero } from "@/components/site/PageShell";
+import { Parallax } from "@/components/site/Parallax";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { POSTS } from "@/data/blogPosts";
@@ -16,8 +17,9 @@ export default function Blog() {
 
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {POSTS.map((p) => (
-            <Card key={p.id} className="hover-lift border-border overflow-hidden group flex flex-col">
+          {POSTS.map((p, i) => (
+            <Parallax key={p.id} speed={0.05 * ((i % 3) + 1)}>
+              <Card className="hover-lift border-border overflow-hidden group flex flex-col h-full">
               <div className="relative aspect-[16/10] overflow-hidden">
                 <img
                   src={p.img}
@@ -49,7 +51,8 @@ export default function Blog() {
                   </Link>
                 </Button>
               </CardContent>
-            </Card>
+              </Card>
+            </Parallax>
           ))}
         </div>
       </section>
