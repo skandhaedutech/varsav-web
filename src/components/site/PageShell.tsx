@@ -5,9 +5,18 @@ import { Parallax } from "./Parallax";
 
 export function PageShell({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary">
+    <div className="min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary relative overflow-hidden">
       <Header />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 relative z-0">
+        {/* Global subtle parallax background elements for all pages */}
+        <Parallax speed={-0.15} className="absolute left-[-10%] top-[20%] pointer-events-none z-[-1] opacity-20 hidden md:block">
+          <div className="h-96 w-96 rounded-full bg-primary/30 blur-[120px]" />
+        </Parallax>
+        <Parallax speed={0.12} className="absolute right-[-5%] top-[60%] pointer-events-none z-[-1] opacity-15 hidden md:block">
+          <div className="h-[500px] w-[500px] rounded-full bg-primary/20 blur-[150px]" />
+        </Parallax>
+        {children}
+      </main>
       <Footer />
     </div>
   );

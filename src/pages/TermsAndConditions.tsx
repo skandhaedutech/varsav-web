@@ -1,4 +1,5 @@
 import { PageShell } from "@/components/site/PageShell";
+import { Parallax } from "@/components/site/Parallax";
 
 export default function TermsAndConditions() {
   return (
@@ -8,7 +9,8 @@ export default function TermsAndConditions() {
           <h1 className="text-4xl font-bold mb-4">Terms & Conditions</h1>
           <p className="text-muted-foreground mb-10">Effective Date: 2026</p>
 
-          <div className="space-y-8">
+          <Parallax speed={0.05}>
+            <div className="space-y-8">
             <div>
               <h2 className="text-2xl font-semibold">1. Introduction</h2>
               <p className="mt-2 text-muted-foreground">
@@ -87,7 +89,7 @@ export default function TermsAndConditions() {
                 Address: 35 Gopal Street, T.Nagar, Chennai, Tamil Nadu 600017
               </p>
             </div>
-          </div>
+          </Parallax>
         </div>
       </section>
     </PageShell>

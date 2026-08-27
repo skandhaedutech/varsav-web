@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Calendar, Clock, ArrowLeft, ArrowRight, ChevronRight, Tag } from "lucide-react";
 import { PageShell } from "@/components/site/PageShell";
+import { Parallax } from "@/components/site/Parallax";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getPostBySlug, getRelatedPosts, getAdjacentPosts } from "@/data/blogPosts";
@@ -145,15 +146,17 @@ export default function BlogDetail() {
         </div>
 
         {/* CTA */}
-        <div className="mt-14 rounded-2xl bg-gradient-brand text-white p-8 text-center">
-          <h3 className="text-xl md:text-2xl font-bold mb-2">Ready to Start Your Journey?</h3>
-          <p className="text-white/70 text-sm mb-6">
-            Talk to our counsellors at Skandha Edu Tech Training Center and find the right course for your goals.
-          </p>
-          <Button asChild size="lg" className="bg-gradient-gold text-navy-deep">
-            <Link to="/contact">Book a Free Counselling Call</Link>
-          </Button>
-        </div>
+        <Parallax speed={0.06}>
+          <div className="mt-14 rounded-2xl bg-gradient-brand text-white p-8 text-center">
+            <h3 className="text-xl md:text-2xl font-bold mb-2">Ready to Start Your Journey?</h3>
+            <p className="text-white/70 text-sm mb-6">
+              Talk to our counsellors at Skandha Edu Tech Training Center and find the right course for your goals.
+            </p>
+            <Button asChild size="lg" className="bg-gradient-gold text-navy-deep">
+              <Link to="/contact">Book a Free Counselling Call</Link>
+            </Button>
+          </div>
+        </Parallax>
       </article>
 
       {/* ── Prev / Next navigation ── */}
@@ -203,8 +206,9 @@ export default function BlogDetail() {
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold mb-8">Related Articles</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {related.map((r) => (
-                <Card key={r.id} className="hover-lift border-border overflow-hidden group">
+              {related.map((r, i) => (
+                <Parallax key={r.id} speed={0.04 * ((i % 3) + 1)}>
+                  <Card className="hover-lift border-border overflow-hidden group h-full">
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <img
                       src={r.img}
@@ -235,7 +239,8 @@ export default function BlogDetail() {
                       </Link>
                     </Button>
                   </CardContent>
-                </Card>
+                  </Card>
+                </Parallax>
               ))}
             </div>
 
