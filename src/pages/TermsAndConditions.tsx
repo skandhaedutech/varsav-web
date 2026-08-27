@@ -89,6 +89,7 @@ export default function TermsAndConditions() {
                 Address: 35 Gopal Street, T.Nagar, Chennai, Tamil Nadu 600017
               </p>
             </div>
+            </div>
           </Parallax>
         </div>
       </section>
