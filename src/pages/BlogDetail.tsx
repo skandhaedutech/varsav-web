@@ -207,7 +207,7 @@ export default function BlogDetail() {
             <h2 className="text-2xl font-bold mb-8">Related Articles</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {related.map((r, i) => (
-                <Parallax key={r.id} speed={0.04 * ((i % 3) + 1)}>
+                <Parallax key={r.id} speed={0.08 * ((i % 3) + 1)} className="h-full">
                   <Card className="hover-lift border-border overflow-hidden group h-full">
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <img

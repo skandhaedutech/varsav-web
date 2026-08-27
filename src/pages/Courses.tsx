@@ -299,7 +299,7 @@ export default function Courses() {
             style={{ animationDuration: "0.4s" }}
           >
             {currentCourses.map((course, i) => (
-              <Parallax key={course.title} speed={0.03 * ((i % 3) + 1)}>
+              <Parallax key={course.title} speed={0.06 * ((i % 3) + 1)} className="h-full">
                 <Reveal delay={i * 40} variant="up">
                   <Card className="h-full hover-lift border-border/80 bg-card hover:border-primary/50 overflow-hidden group rounded-2xl transition-all duration-300">
                   <CardContent className="p-7 flex flex-col justify-between h-full">

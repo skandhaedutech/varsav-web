@@ -68,7 +68,7 @@ export default function SuccessStories() {
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-6">
           {STORIES.map((s, i) => (
-            <Parallax key={s.name} speed={0.04 * ((i % 2) + 1)}>
+            <Parallax key={s.name} speed={0.08 * ((i % 2) + 1)} className="h-full">
               <Card className="hover-lift border-border overflow-hidden h-full">
               <CardContent className="p-7">
                 <div className="flex items-start justify-between gap-4">

@@ -18,7 +18,7 @@ export default function Blog() {
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {POSTS.map((p, i) => (
-            <Parallax key={p.id} speed={0.05 * ((i % 3) + 1)}>
+            <Parallax key={p.id} speed={0.1 * ((i % 3) + 1)} className="h-full">
               <Card className="hover-lift border-border overflow-hidden group flex flex-col h-full">
               <div className="relative aspect-[16/10] overflow-hidden">
                 <img

@@ -22,16 +22,6 @@ function clamp(value: number, min: number, max: number) {
  */
 function shouldDisableParallax(): boolean {
   if (typeof window === "undefined") return true;
-
-  // Respect reduced motion preference
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (prefersReduced) return true;
-
-  // Disable on touch-primary devices (phones, tablets)
-  const isTouchPrimary = window.matchMedia("(pointer: coarse)").matches;
-  const isNarrow = window.innerWidth < 768;
-  if (isTouchPrimary && isNarrow) return true;
-
   return false;
 }
 

@@ -28,7 +28,7 @@ export default function Gallery() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {ITEMS.map((item, i) => (
-              <Parallax key={i} speed={0.04 * ((i % 3) + 1)}>
+              <Parallax key={i} speed={0.08 * ((i % 3) + 1)} className="h-full">
                 <button
                 key={i}
                 onClick={() => setPreview(item.src)}
